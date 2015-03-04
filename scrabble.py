@@ -1,6 +1,6 @@
 # imports sys module to allow for .argv to be used to gather rack data
 import sys
-# takes command line arguments when running file in terminal
+# takes command line arguments when running file.
 rack = sys.argv[1]
 # creates empty list for confirmed words to be compared to dictionary words
 confirm = []
@@ -33,17 +33,19 @@ for word in words:
         # return false and run next letter (does not add anything to confirm)
         if letter not in letters:
             compare = False
+        # return true, and remove letter from rack list. Tally total score,
+        # and append word and total to confirm list.
         else:
             letters.remove(letter)
-            # if compare is True:
             total = 0
             for letter in word:
                 total = total + scores[letter]
             confirm.append([total, word])
-
+# Sorts the confirm list
 confirm.sort()
-
-for entry in confirm:
-    score = entry[0]
-    word = entry[1]
+# Bind the first and second item (word and total) from confirm list, and
+# print to terminal.
+for item in confirm:
+    score = item[0]
+    word = item[1]
     print(str(score) + " " + word)
